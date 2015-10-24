@@ -10,4 +10,5 @@ dependencies:
     - make
 test:
   override:
-    - ./shelltest -f tap test/*.shelltest
+    - docker images
+    - ./shelltest -d -f tap test/*.shelltest
