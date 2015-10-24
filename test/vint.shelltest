@@ -1,1 +1,1 @@
-$ docker run --rm uochan/vint vint -v
+$ docker run uochan/vint vint -v

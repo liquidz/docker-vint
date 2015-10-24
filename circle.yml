@@ -16,6 +16,4 @@ dependencies:
     - make
 test:
   override:
-    - docker images
-    - docker run uochan/vint vint -v
     - ./shelltest -d -f tap test/*.shelltest
