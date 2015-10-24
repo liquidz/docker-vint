@@ -2,13 +2,20 @@ machine:
   services:
     - docker
 dependencies:
+  cache_directories:
+    - "~/docker"
   pre:
     - wget -O shelltest https://github.com/liquidz/shelltest/releases/download/v0.1.0/shelltest_linux_amd64
     - chmod +x shelltest
+
   override:
     - docker info
+    - if [[ -e ~/docker/python2.tar ]]; then docker load -i ~/docker/python2.tar; fi
+    - docker pull python:2
+    - mkdir -p ~/docker; docker save python:2 > ~/docker/python2.tar
     - make
 test:
   override:
     - docker images
+    - docker run uochan/vint vint -v
     - ./shelltest -d -f tap test/*.shelltest
